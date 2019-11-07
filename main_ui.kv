@@ -1,0 +1,57 @@
+<MainWindow>:
+    name: "main_window"
+    # Label:
+    #     text: "Main window"
+    plaka_label: _plaka_label
+    access_status_label: _access_status_label
+    gate_status: _gate_status
+    image_main: _image_main
+
+    BoxLayout:
+        orientation: "vertical"
+        padding: 10
+        spacing: 10
+        BoxLayout:
+            orientation: "horizontal"
+            size_hint_y: 0.1
+            Button:
+                text: "Start/Stop"
+                on_release: root.callback_start_stop()
+            Label:
+                id: _plaka_label
+                text: "plaka"
+            Label:
+                id: _access_status_label
+                text: "Access Status"
+            Label:
+                id:_gate_status
+                text: "Closed"
+        BoxLayout:
+            orientation: "vertical"
+            Image:
+                id: _image_main
+                allow_stretch: True
+                keep_ratio: True
+                size_hint_y: None
+                size_hint_x: None
+                height: self.parent.height
+                width: self.parent.height*self.image_ratio
+                x: self.parent.width*.5 - self.width*.5
+
+<DataWindow>:
+    name: "data_window"
+    # Label:
+    #     text: "Data window"
+    BoxLayout:
+        orientation: "vertical"
+        Label:
+            text: "Data window"
+        Button:
+            text: "Back"
+            on_release:
+                app.root.current = "main_window"
+                root.manager.transition.direction = "right"
+
+WindowManager:
+    MainWindow:
+    DataWindow:
